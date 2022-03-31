@@ -1,7 +1,6 @@
 const express = require("express");
-
+const { name, version } = require("./package.json");
 const { ROUTES } = require("./routes");
-
 const { setupLogging } = require("./logging");
 const { setupRateLimit } = require("./ratelimit");
 const { setupCreditCheck } = require("./creditcheck");
@@ -16,6 +15,14 @@ setupRateLimit(app, ROUTES);
 setupAuth(app, ROUTES);
 setupCreditCheck(app, ROUTES);
 setupProxies(app, ROUTES);
+
+app.get("/", (req, res) => {
+  res.json({
+    status: true,
+    message: `Sevice ${name} is running`,
+    version,
+  });
+});
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
