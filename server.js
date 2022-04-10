@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const { name, version } = require("./package.json");
 const { ROUTES } = require("./routes");
 const { setupLogging } = require("./logging");
@@ -9,6 +10,12 @@ const { setupAuth } = require("./auth");
 
 const app = express();
 const port = 4000;
+
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 
 setupLogging(app);
 setupRateLimit(app, ROUTES);

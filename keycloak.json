@@ -1,8 +1,8 @@
 {
-  "realm": "nodejs-example",
+  "realm": "skck-dev",
   "bearer-only": true,
   "auth-server-url": "http://localhost:8080/",
   "ssl-required": "external",
-  "resource": "nodejs-apiserver",
+  "resource": "api-gateway-dev",
   "confidential-port": 0
 }

@@ -1,29 +1,18 @@
 const ROUTES = [
   {
-    url: "/free",
-    auth: false,
+    url: "/sample",
+    auth: true,
     creditCheck: false,
     rateLimit: {
       windowMs: 15 * 60 * 1000,
-      max: 5,
+      max: 60,
     },
     proxy: {
-      target: "https://reqres.in/api/users",
+      target: "http://127.0.0.1:5001/sample",
+      secure: false,
       changeOrigin: true,
       pathRewrite: {
-        [`^/free`]: "",
-      },
-    },
-  },
-  {
-    url: "/premium",
-    auth: true,
-    creditCheck: true,
-    proxy: {
-      target: "https://reqres.in/api/users/1",
-      changeOrigin: true,
-      pathRewrite: {
-        [`^/premium`]: "",
+        [`^/sample`]: "",
       },
     },
   },
