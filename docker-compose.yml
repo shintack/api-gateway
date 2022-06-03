@@ -1,9 +1,33 @@
 version: '3.8'
+
+networks:
+  skck-network:
+
+
 services:
+
   api-gateway:
     build:
       context: .
       dockerfile: Dockerfile
     ports:
       - 4000:4000
-    command: node server.js
+    depends_on:
+      - gateway-db
+    networks:
+      - skck-network
+    # command: node server.js
+
+  gateway-db:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: secret
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - skck-network
+
+volumes:
+  mongo_data:
