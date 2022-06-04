@@ -16,18 +16,3 @@ services:
       - gateway-db
     networks:
       - skck-network
-    # command: node server.js
-
-  gateway-db:
-    image: mongo
-    restart: always
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: secret
-    volumes:
-      - mongo_data:/data/db
-    networks:
-      - skck-network
-
-volumes:
-  mongo_data:
